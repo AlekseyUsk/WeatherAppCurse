@@ -5,12 +5,12 @@ plugins {
 
 android {
     namespace 'com.bignerdranch.android.weatherappcurse'
-    compileSdk 32
+    compileSdk 33
 
     defaultConfig {
         applicationId "com.bignerdranch.android.weatherappcurse"
         minSdk 21
-        targetSdk 32
+        targetSdk 33
         versionCode 1
         versionName "1.0"
 
@@ -30,9 +30,23 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    buildFeatures {
+        viewBinding = true
+    }
 }
 
 dependencies {
+    //location
+    implementation 'com.google.android.gms:play-services-location:21.0.1'
+
+    //fragment
+    implementation 'androidx.fragment:fragment-ktx:1.5.7'
+
+    //picasso
+    implementation 'com.squareup.picasso:picasso:2.71828'
+
+    //volley
+    implementation 'com.android.volley:volley:1.2.1'
 
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
