@@ -9,7 +9,6 @@ import com.bignerdranch.android.weatherappcurse.R
 
 class DaysFragment : Fragment() {
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
