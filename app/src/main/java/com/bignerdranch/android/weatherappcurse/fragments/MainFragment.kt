@@ -83,7 +83,8 @@ class MainFragment : Fragment() {
         val queue = Volley.newRequestQueue(requireContext())
         val stringRequest = StringRequest(
             Request.Method.GET,
-            url, { result -> parseResultWeatherData(result)
+            url, { result ->
+                parseWeatherData(result)
             },
             { error ->
                 Log.d("MyLog", "ОШИБКА ${error}")
@@ -92,9 +93,12 @@ class MainFragment : Fragment() {
         queue.add(stringRequest)
     }
 
-    private fun parseResultWeatherData(result: String) {
+    private fun parseWeatherData(result: String) {
         val mainObject = JSONObject(result)
-        //создал модельку с данными в которую я передам данные с сервера JsonObject
+        gettingInfoForTheCard(mainObject)
+    }
+
+    private fun gettingInfoForTheCard(mainObject: JSONObject) {
         val item = WeatherModel(
             mainObject.getJSONObject("location").getString("name"),
             mainObject.getJSONObject("current").getString("last_updated"),
