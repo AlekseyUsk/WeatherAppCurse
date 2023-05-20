@@ -18,7 +18,9 @@ import com.bignerdranch.android.weatherappcurse.API_KEY
 import com.bignerdranch.android.weatherappcurse.adapter.ViewPagerAdapter
 import com.bignerdranch.android.weatherappcurse.databinding.FragmentMainBinding
 import com.bignerdranch.android.weatherappcurse.isPermissionGranted
+import com.bignerdranch.android.weatherappcurse.model.WeatherModel
 import com.google.android.material.tabs.TabLayoutMediator
+import org.json.JSONObject
 
 class MainFragment : Fragment() {
 
@@ -81,14 +83,34 @@ class MainFragment : Fragment() {
         val queue = Volley.newRequestQueue(requireContext())
         val stringRequest = StringRequest(
             Request.Method.GET,
-            url,{
-                result -> android.util.Log.d("MyLog","ПОЛУЧЕН РЕЗУЛЬТАТ ${result}")
+            url, { result -> parseResultWeatherData(result)
             },
-            {
-                error -> Log.d("MyLog","ОШИБКА ${error}")
+            { error ->
+                Log.d("MyLog", "ОШИБКА ${error}")
             }
         )
         queue.add(stringRequest)
+    }
+
+    private fun parseResultWeatherData(result: String) {
+        val mainObject = JSONObject(result)
+        //создал модельку с данными в которую я передам данные с сервера JsonObject
+        val item = WeatherModel(
+            mainObject.getJSONObject("location").getString("name"),
+            mainObject.getJSONObject("current").getString("last_updated"),
+            mainObject.getJSONObject("current")
+                .getJSONObject("condition").getString("text"),
+            mainObject.getJSONObject("current").getString("temp_c"),
+            "", "",
+            mainObject.getJSONObject("current")
+                .getJSONObject("condition").getString("icon"),
+            ""
+        )
+        Log.d("MyLog", "City ${item.city}")
+        Log.d("MyLog", "Time ${item.time}")
+        Log.d("MyLog", "Condition ${item.condition}")
+        Log.d("MyLog", "Temp ${item.currentTemp}")
+        Log.d("MyLog", "Url ${item.imageUrl}")
     }
 
     companion object {
