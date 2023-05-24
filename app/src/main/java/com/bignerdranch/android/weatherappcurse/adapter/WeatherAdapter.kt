@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bignerdranch.android.weatherappcurse.R
 import com.bignerdranch.android.weatherappcurse.databinding.ListItemBinding
 import com.bignerdranch.android.weatherappcurse.model.WeatherModel
+import com.squareup.picasso.Picasso
 
 class WeatherAdapter : ListAdapter<WeatherModel, WeatherAdapter.Holder>(Comparator()) {
 
@@ -18,6 +19,7 @@ class WeatherAdapter : ListAdapter<WeatherModel, WeatherAdapter.Holder>(Comparat
             textViewData.text = item.time
             textViewCondition.text = item.condition
             textViewTemp.text = item.currentTemp
+            Picasso.get().load("https:" + item.imageUrl).into(imageViewCard)
         }
     }
 

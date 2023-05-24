@@ -52,6 +52,7 @@ class MainFragment : Fragment() {
         requestWeatherData("London")
     }
 
+    //Adapter viewPager TabLayout
     private fun init() = with(binding) {
         val adapter = ViewPagerAdapter(activity as FragmentActivity, fragmentList)
         viewPager.adapter = adapter
@@ -60,8 +61,8 @@ class MainFragment : Fragment() {
         }.attach()
     }
 
-    // регистрация pLauncher : ActivityResultLauncher<String
-    // калбек проверка в реальном времени дал ли разрешение пользователь и вернет либо true или false
+    /* регистрация pLauncher : ActivityResultLauncher<String
+     калбек проверка в реальном времени дал ли разрешение пользователь и вернет либо true или false*/
     private fun permissionListener() {
         pLauncher = registerForActivityResult(ActivityResultContracts.RequestPermission()) {
             Toast.makeText(activity, "Permission is ${it}", Toast.LENGTH_SHORT).show()
@@ -76,6 +77,7 @@ class MainFragment : Fragment() {
             //а если нет разрешения то код можно дописать
         }
     }
+
     // запрос
     private fun requestWeatherData(city: String) {
         val url = "https://api.weatherapi.com/v1/forecast.json?key=" +
