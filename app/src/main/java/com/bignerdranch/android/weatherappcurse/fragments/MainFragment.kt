@@ -53,8 +53,6 @@ class MainFragment : Fragment() {
         init()
         updateCurrentCard()
         requestWeatherData("London")
-
-        requireActivity().startService(Intent(requireActivity(),MyService::class.java))
     }
 
     //Adapter viewPager TabLayout

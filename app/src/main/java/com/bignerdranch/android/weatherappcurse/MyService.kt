@@ -4,8 +4,13 @@ import android.app.IntentService
 import android.content.Intent
 import android.util.Log
 
-class MyService : IntentService("IntentService") {
+const val KEY = "KEY"
+class MyService : IntentService("") {
     override fun onHandleIntent(intent: Intent?) {
-        Log.d("@@@", "привет")
+        Log.d("@@@", "привет из сервиса")
+        intent?.let {
+            it.getStringExtra(KEY)
+            Log.d("@@@", "привет из сервиса / ${it.getStringExtra(KEY)}")
+        }
     }
 }
