@@ -1,6 +1,7 @@
 package com.bignerdranch.android.weatherappcurse.fragments
 
 import android.Manifest
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -17,6 +18,8 @@ import com.android.volley.Request
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.bignerdranch.android.weatherappcurse.API_KEY
+import com.bignerdranch.android.weatherappcurse.MainActivity
+import com.bignerdranch.android.weatherappcurse.MyService
 import com.bignerdranch.android.weatherappcurse.adapter.ViewPagerAdapter
 import com.bignerdranch.android.weatherappcurse.databinding.FragmentMainBinding
 import com.bignerdranch.android.weatherappcurse.isPermissionGranted

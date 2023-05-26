@@ -1,5 +1,6 @@
 package com.bignerdranch.android.weatherappcurse
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.bignerdranch.android.weatherappcurse.fragments.MainFragment
@@ -12,5 +13,7 @@ class MainActivity : AppCompatActivity() {
             .beginTransaction()
             .replace(R.id.container,MainFragment.newInstance())
             .commit()
+
+        startService(Intent(this,MyService::class.java))
     }
 }
