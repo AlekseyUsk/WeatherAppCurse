@@ -13,7 +13,5 @@ class MainActivity : AppCompatActivity() {
             .beginTransaction()
             .replace(R.id.container,MainFragment.newInstance())
             .commit()
-
-        startService(Intent(this,MyService::class.java))
     }
 }
