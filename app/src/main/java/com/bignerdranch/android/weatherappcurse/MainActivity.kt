@@ -17,6 +17,5 @@ class MainActivity : AppCompatActivity() {
         startService(Intent(this,MyService::class.java).apply {
             putExtra(KEY,"ПЕРЕДАЛ ИЗ АКТИВИТИ")
         })
-
     }
 }

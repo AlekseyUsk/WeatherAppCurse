@@ -18,7 +18,7 @@ class WeatherAdapter : ListAdapter<WeatherModel, WeatherAdapter.Holder>(Comparat
         fun bind(item: WeatherModel) = with(binding) {
             textViewData.text = item.time
             textViewCondition.text = item.condition
-            textViewTemp.text = item.currentTemp
+            textViewTemp.text = item.currentTemp.ifEmpty { "${item.maxTemp}ºC  /  ${item.minTemp}ºC" }
             Picasso.get().load("https:" + item.imageUrl).into(imageViewCard)
         }
     }

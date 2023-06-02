@@ -20,7 +20,7 @@
             android:layout_marginStart="12dp"
             android:layout_marginTop="12dp"
             android:fontFamily="serif"
-            android:text="18.05.2023"
+            android:text="@string/dateTime"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

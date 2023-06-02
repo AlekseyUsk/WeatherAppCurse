@@ -37,7 +37,7 @@ class MainFragment : Fragment() {
 
     lateinit var binding: FragmentMainBinding
     lateinit var pLauncher: ActivityResultLauncher<String>
-    private val viewModel : MyViewModel by activityViewModels()
+    private val viewModel: MyViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -108,11 +108,12 @@ class MainFragment : Fragment() {
     private fun parseWeatherData(result: String) {
         val mainObject = JSONObject(result)
         val list = parseDays(mainObject)
-        gettingInfoForTheCard(mainObject,list[0])
+        gettingInfoForTheCard(mainObject, list[0])
     }
+
     // обновление карточки
-    private fun updateCurrentCard() = with(binding){
-        viewModel.liveDataCurrent.observe(viewLifecycleOwner){ item ->
+    private fun updateCurrentCard() = with(binding) {
+        viewModel.liveDataCurrent.observe(viewLifecycleOwner) { item ->
             val maxMin = "${item.maxTemp}ºC/${item.minTemp}ºC"
             tvData.text = item.time
             tvCity.text = item.city
@@ -124,7 +125,7 @@ class MainFragment : Fragment() {
     }
 
     // погода на один день - карточка
-    private fun gettingInfoForTheCard(mainObject: JSONObject,weatherItem : WeatherModel) {
+    private fun gettingInfoForTheCard(mainObject: JSONObject, weatherItem: WeatherModel) {
         val item = WeatherModel(
             mainObject.getJSONObject("location").getString("name"),
             mainObject.getJSONObject("current").getString("last_updated"),
@@ -156,6 +157,7 @@ class MainFragment : Fragment() {
                 day.getJSONObject("day").getJSONObject("condition").getString("icon"),
                 day.getJSONArray("hour").toString()
             )
+            viewModel.liveDataList.value = list
             list.add(item)
         }
         return list
